@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      KC_Y,      KC_U,      KC_I,                 KC_O,       KC_P,       KC_LBRC,  KC_RBRC,  KC_BSLS,      KC_PGUP, 
 		KC_CAPS,    LT(MOVE,KC_A),        KC_S,      KC_D,      KC_F,      KC_G,      KC_H,      LT(SYMBOLS, KC_J),    KC_K,       KC_L,       KC_SCLN,  KC_QUOT,  KC_ENT,       KC_PGDN, 
 		KC_LSFT,    KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_N,      KC_M,      KC_COMM,              KC_DOT,     KC_SLSH,    KC_RSFT,  KC_UP,    KC_END, 
-		KC_LALT,    KC_LGUI,   KC_LCTL,              LT(MAC_FN, KC_SPC),                         KC_RALT,              MO(MAC_FN), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT),
+		KC_LALT,    KC_LGUI,   KC_LCTL,              LT(NUMBERS, KC_SPC),                         KC_RALT,              MO(SYMBOLS), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [MAC_B] = LAYOUT( /* FN */
 		KC_ESC,     KC_BRID,       KC_BRIU, KC_MCTL, KC_LPAD,   KC_SIRI, KC_F6,   KC_MPRV,             KC_MPLY,    KC_MNXT,    KC_MUTE,    KC_VOLD,   KC_VOLU,  KC_DEL,   KC_MUTE, 
@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB,     KC_Q,          KC_W,    KC_E,    KC_R,      KC_T,    KC_Y,    KC_U,                KC_I,       KC_O,       KC_P,       KC_LBRC,   KC_RBRC,  KC_BSLS,  KC_PGUP, 
 		KC_CAPS,   LT(MOVE,KC_A),  KC_S,    KC_D,    KC_F,      KC_G,    KC_H,    LT(SYMBOLS, KC_J),   KC_K,       KC_L,       KC_SCLN,    KC_QUOT,   KC_ENT,             KC_PGDN, 
 		KC_LSFT,    KC_Z,          KC_X,    KC_C,    KC_V,      KC_B,    KC_N,    KC_M,                KC_COMM,    KC_DOT,     KC_SLSH,    KC_RSFT,   KC_UP,    KC_END, 
-		KC_LCTL,    KC_LALT,       KC_LGUI,          LT(MAC_FN, KC_SPC),                               KC_RGUI,    MO(MAC_FN), KC_RCTL,    KC_LEFT,   KC_DOWN,  KC_RGHT),
+		KC_LCTL,    KC_LALT,       KC_LGUI,          LT(NUMBERS, KC_SPC),                               KC_RGUI,    MO(SYMBOLS), KC_RCTL,    KC_LEFT,   KC_DOWN,  KC_RGHT),
 
     [MOVE] = LAYOUT( /* Base */
 		PDF(MAC_B), KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,       RM_TOGG, 
@@ -74,9 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [WIN_B] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [WIN_FN] = { ENCODER_CCW_CW(RM_SATD, RM_SATU) },
+    [MOVE] = { ENCODER_CCW_CW(RM_SATD, RM_SATU) },
     [MAC_B] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [MAC_FN] = { ENCODER_CCW_CW(RM_SATD, RM_SATU) },
+    [NUMBERS] = { ENCODER_CCW_CW(RM_SATD, RM_SATU) },
+    [SYMBOLS] = { ENCODER_CCW_CW(RM_SATD, RM_SATU) },
+
 };
 #endif
 
@@ -87,7 +89,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 rgb_matrix_set_color(i, RGB_RED);
             }
             break;
-        case 2:
+        case 3:
             //turn it all off
             for (uint8_t i = led_min; i < led_max; i++) {
                 rgb_matrix_set_color(i, RGB_OFF);
@@ -129,7 +131,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 
             break;
-        case 3:
+        case 2:
             //turn it all off
             for (uint8_t i = led_min; i < led_max; i++) {
                 rgb_matrix_set_color(i, RGB_OFF);
