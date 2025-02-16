@@ -99,6 +99,9 @@
             "splash": false,
             "solid_splash": false
         },
+        "default":{
+            "animation": "jellybean_raindrops"
+        },
         "sleep": true
     },
     "layouts": {
