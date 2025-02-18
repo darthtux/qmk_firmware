@@ -33,8 +33,18 @@ enum custom_keycodes {
     tmux_2,
     tmux_3,
     tmux_4,
+    tmux_5,
     tmux_rename,
     tmux_create,
+    tmux_horizontal,
+    tmux_vertical,
+    tmux_pane_to_window,
+    tmux_next_pane,
+    tmux_close_window,
+    tmux_copy,
+    tmux_cursor_up,
+    tmux_cursor_down,
+    tmux_history_top
   };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -90,10 +100,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
 ),
 [TMUX] = LAYOUT(
-    _______,    _______,      _______,        _______,        _______,     _______,                             _______,    _______,        _______,        _______,    _______,    _______,
-    _______,    _______,      _______,        _______,        _______,     _______,                             tmux_0,     tmux_1,         tmux_2,         tmux_3,     tmux_4,     _______,
-    _______,    _______,      _______,        _______,        _______,     _______,                             _______,    tmux_create,    tmux_rename,    _______,    _______,    _______,
-    _______,    _______,      _______,        _______,        _______,     _______,   KC_MPLY, KC_MUTE,         _______,    _______,        _______,        _______,    _______,    _______,
+    _______,    _______,      _______,        _______,        _______,     _______,                             _______,            _______,        _______,          _______,              _______,            _______,
+    _______,    _______,      _______,        _______,        _______,     _______,                             tmux_0,             tmux_1,         tmux_2,           tmux_3,               tmux_4,             tmux_5,
+    _______,    _______,      _______,        _______,        _______,     _______,                             tmux_horizontal,    tmux_create,    tmux_rename,      tmux_pane_to_window,  tmux_next_pane,     tmux_vertical,
+    _______,    _______,      _______,        _______,        _______,     _______,   KC_MPLY, KC_MUTE,         tmux_history_top,   tmux_copy,      tmux_cursor_up,   tmux_cursor_down,     _______,            tmux_close_window,
     _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
 )
 };
@@ -125,52 +135,117 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     // These macros are speicif to the TMUX layer.  Ignore them if not on that layer.
     if(IS_LAYER_ON(TMUX)){
     
-    switch (keycode) {
-        case tmux_0:  // go to session 0
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING("0");
+      switch (keycode) {
+          case tmux_0:  // go to session 0
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("0");
+              }
+            return false;
+          case tmux_1:  // go to session 1 not workihng for some reason
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("1");
+              }
+            return false;
+          case tmux_2: // go to session 2
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("2");
             }
-          return false;
-        case tmux_1:  // go to session 1 not workihng for some reason
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING("1");
+            return false;
+          case tmux_3:  // go to session 3
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("3");
             }
-          return false;
-        case tmux_2: // go to session 2
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING("2");
-          }
-          return false;
-        case tmux_3:  // go to session 3
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING("3");
-          }
-          return false;
-        case tmux_4:  
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING("4");
-          }
-          return false;
-        case tmux_rename: 
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING(",");
-          }
-          return false;
-        case tmux_create:  
-          if (record->event.pressed) {
-            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
-            SEND_STRING("c");
-          }
-          return false;
-          // add split
-          // add switch
-        }
+            return false;
+          case tmux_4:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("4");
+            }
+            return false;
+          case tmux_5:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("5");
+            }
+            return false;
+          case tmux_rename: 
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING(",");
+            }
+            return false;
+          case tmux_create:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("c");
+            }
+            return false;
+          case tmux_horizontal:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("\"");
+            }
+            return false;
+          case tmux_vertical:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("%");
+            }
+            return false;
+            // convert pane to window
+          case tmux_pane_to_window:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("!");
+            }
+            return false;
+            // next pane
+          case tmux_next_pane:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("o");
+            }
+            return false;
+            // close window
+          case tmux_close_window:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("&");
+            }
+            return false;
+            // enter copy mode
+          case tmux_copy:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("[");
+            }
+            return false;
+            // curor up
+          case tmux_cursor_up:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("k");
+            }
+            return false;
+            // cursor down
+          case tmux_cursor_down:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("j");
+            }
+            return false;
+            // top of history
+          case tmux_history_top:  
+            if (record->event.pressed) {
+              SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+              SEND_STRING("g");
+            }
+            return false;
+      }
     }
-    return true;
+      return true;
 }
