@@ -9,3 +9,5 @@ RGBLIGHT_ENABLE = no
 DYNAMIC_MACRO_ENABLE = yes
 # Enable DBug Mode
 CONSOLE_ENABLE = no
+# convert to  UF2 format
+CONVERT_TO=promicro_rp2040

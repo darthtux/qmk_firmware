@@ -140,7 +140,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               SEND_STRING("0");
               }
             return true;
-          case tmux_1:  // go to session 1 not workihng for some reason
+          case tmux_1:  // go to session 1
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("1");
@@ -158,72 +158,70 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               SEND_STRING("3");
             }
             return true;
-          case tmux_4:  
+          case tmux_4:  // go to session 4
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("4");
             }
             return true;
-          case tmux_5:  
+          case tmux_5:  // go to session 5
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("5");
             }
             return true;
-          case tmux_rename: 
+          case tmux_rename: // rename tmux window
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING(",");
             }
             return true;
-          case tmux_create:  
+          case tmux_create:  // create new tmux window
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("c");
             }
             return true;
-          case tmux_horizontal:  
+          case tmux_horizontal:  // split window into horizontal panals
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("\"");
             }
             return true;
-          case tmux_vertical:  
+          case tmux_vertical:  // split winmdow into vertical panels
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("%");
             }
             return true;
             // convert pane to window
-          case tmux_pane_to_window:  
+          case tmux_pane_to_window:  // move pane to window
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("!");
             }
             return true;
             // next pane
-          case tmux_next_pane:  
+          case tmux_next_pane:  // go to next pane
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("o");
             }
             return true;
             // close window
-          case tmux_close_window:  
+          case tmux_close_window:  // close current window
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("&");
             }
             return true;
-            // enter copy mode
-          case tmux_close_pane:  
+          case tmux_close_pane: // enter copy mode  
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("x");
             }
             return true;
-            // enter copy mode
-          case tmux_copy:  
+          case tmux_copy: // enter copy mode  
             if (record->event.pressed) {
               SEND_STRING(SS_LCTL("b") SS_DELAY(20));
               SEND_STRING("[");
@@ -231,7 +229,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
       }
     }
-      return true;
+      return false;
 }
 
 /*
