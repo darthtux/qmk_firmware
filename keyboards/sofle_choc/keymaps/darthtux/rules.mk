@@ -7,3 +7,5 @@ DEFAULT_FOLDER = sofle/darthtux
 BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = no
 DYNAMIC_MACRO_ENABLE = yes
+# Enable DBug Mode
+CONSOLE_ENABLE = no
