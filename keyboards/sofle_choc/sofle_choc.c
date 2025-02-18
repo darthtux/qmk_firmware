@@ -22,7 +22,8 @@
     Mouse,
     Arrows,
     SYMBOLS,
-    MAC_SHORTS
+    MAC_SHORTS,
+    TMUX
  };
  
  #ifdef OLED_ENABLE
@@ -226,6 +227,9 @@
              oled_write_P(adjust_layer, false);
              break;
          case MAC_SHORTS:
+            oled_write_P(adjust_layer, false);
+            break;
+        case TMUX:
             oled_write_P(adjust_layer, false);
             break;
          default:

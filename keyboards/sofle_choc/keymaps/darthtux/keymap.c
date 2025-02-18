@@ -23,9 +23,19 @@ enum __layers {
     Mouse,
     Arrows,
     SYMBOLS,
-    MAC_SHORTS
+    MAC_SHORTS,
+    TMUX
 };
 
+enum custom_keycodes {
+    tmux_0,
+    tmux_1,
+    tmux_2,
+    tmux_3,
+    tmux_4,
+    tmux_rename,
+    tmux_create,
+  };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
@@ -49,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,   KC_Q,     KC_W,    KC_E,    KC_R,    KC_T,                          KC_Y,     KC_U,                   KC_I,                   KC_O,                       KC_P,                   KC_BSPC,
     KC_TAB,   KC_A,     KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,     LT(SYMBOLS,KC_J),       LT(MAC_SHORTS,KC_K),    KC_L,                       KC_SCLN,                KC_QUOT,
     KC_LSFT,  KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,       KC_MPLY, KC_MUTE,  KC_N,     KC_M,                   MT(MOD_LGUI, KC_COMM),  MT(MOD_LALT, KC_DOT),       MT(MOD_LCTL, KC_SLSH),  KC_RSFT,
-    KC_LCTL,  KC_LALT,  KC_LGUI, MT(MOD_LSFT,KC_SPC),  KC_LSFT,                                KC_BSPC,  KC_ENT,                 KC_RCMD,                KC_RGUI,                    KC_RCTL
+    KC_LCTL,  KC_LALT,  KC_LGUI, MT(MOD_LSFT,KC_SPC),  KC_LSFT,                                KC_BSPC,  KC_ENT,                 LALT(KC_BSPC),                KC_RGUI,                    KC_RCTL
 ),
 [Mouse] = LAYOUT(
     _______,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,                              KC_F6,      KC_F7,       KC_F8,     KC_F9,      KC_F10,     _______,
@@ -73,15 +83,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    _______,    _______,    _______,    _______,                                            _______,        _______,    _______,    _______,    _______
 ),
 [MAC_SHORTS] = LAYOUT(
-    CG_TOGG,    _______,            _______,        _______,        _______,           _______,                             _______,    _______,    _______,    _______,    _______,      _______,
-    _______,    LGUI(KC_LEFT),      LGUI(KC_RGHT),  SGUI(KC_BSPC),  LALT(KC_BSPC),     _______,                             _______,    _______,    _______,    _______,    _______,      _______,
-    _______,    _______,            LGUI(KC_X),     LGUI(KC_V),     LGUI(KC_C),        _______,                             _______,    _______,    _______,    _______,    _______,      _______,
-    _______,    _______,            _______,        _______,        LGUI(KC_Z),        _______,   KC_MPLY, KC_MUTE,         _______,    _______,    _______,    _______,    _______,      _______,
-    _______,    _______,            _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
+    CG_TOGG,    _______,      _______,        _______,        _______,           _______,                             _______,    _______,    _______,    _______,    _______,      _______,
+    _______,    _______,      SGUI(KC_BSPC),  LGUI(KC_LEFT),  LGUI(KC_RGHT),     _______,                             _______,    _______,    _______,    _______,    _______,      _______,
+    _______,    _______,      LGUI(KC_X),     LGUI(KC_V),     LGUI(KC_C),        _______,                             _______,    _______,    _______,    _______,    _______,      _______,
+    _______,    _______,      _______,        _______,        LGUI(KC_Z),        _______,   KC_MPLY, KC_MUTE,         _______,    _______,    _______,    _______,    _______,      _______,
+    _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
+),
+[TMUX] = LAYOUT(
+    _______,    _______,      _______,        _______,        _______,     _______,                             _______,    _______,        _______,        _______,    _______,    _______,
+    _______,    _______,      _______,        _______,        _______,     _______,                             tmux_0,     tmux_1,         tmux_2,         tmux_3,     tmux_4,     _______,
+    _______,    _______,      _______,        _______,        _______,     _______,                             _______,    tmux_create,    tmux_rename,    _______,    _______,    _______,
+    _______,    _______,      _______,        _______,        _______,     _______,   KC_MPLY, KC_MUTE,         _______,    _______,        _______,        _______,    _______,    _______,
+    _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
 )
-// make tmux layer
-// make vscode layer
-// make vim layer
 };
 
 #if defined(ENCODER_MAP_ENABLE)
@@ -91,13 +105,72 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [Arrows] = {  ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [SYMBOLS] = {  ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [MAC_SHORTS] = {  ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [TMUX] = {  ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
 };
 #endif
 
+
 const uint16_t PROGMEM mouse_layer[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM arrows_layer[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
+
 
 combo_t key_combos[] = {
     COMBO(mouse_layer, MO(Mouse)),
     COMBO(arrows_layer, MO(Arrows)),
+    COMBO(TMUX_layer, MO(TMUX)),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // These macros are speicif to the TMUX layer.  Ignore them if not on that layer.
+    if(IS_LAYER_ON(TMUX)){
+    
+    switch (keycode) {
+        case tmux_0:  // go to session 0
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING("0");
+            }
+          return false;
+        case tmux_1:  // go to session 1 not workihng for some reason
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING("1");
+            }
+          return false;
+        case tmux_2: // go to session 2
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING("2");
+          }
+          return false;
+        case tmux_3:  // go to session 3
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING("3");
+          }
+          return false;
+        case tmux_4:  
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING("4");
+          }
+          return false;
+        case tmux_rename: 
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING(",");
+          }
+          return false;
+        case tmux_create:  
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("b") SS_DELAY(20));
+            SEND_STRING("c");
+          }
+          return false;
+          // add split
+          // add switch
+        }
+    }
+    return true;
+}
