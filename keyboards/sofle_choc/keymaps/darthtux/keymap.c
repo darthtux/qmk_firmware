@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,    KC_T,                                  KC_Y,     KC_U,                   KC_I,                   KC_O,                       KC_P,                   KC_BSPC,
     KC_TAB,     KC_A,       KC_S,       KC_D,       KC_F,    KC_G,                                  KC_H,     LT(SYMBOLS,KC_J),       LT(MAC_SHORTS,KC_K),    KC_L,                       KC_SCLN,                KC_QUOT,
     KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,    KC_B,          KC_MPLY, KC_MUTE,       KC_N,     KC_M,                   MT(MOD_LGUI, KC_COMM),  MT(MOD_LALT, KC_DOT),       MT(MOD_LCTL, KC_SLSH),  KC_RSFT,
-    KC_LCTL,    KC_LALT,    KC_LGUI,    MT(MOD_LSFT,KC_SPC),  _______,                                _______,  KC_ENT,               LCTL(KC_TAB),           LGUI(KC_TAB),               LALT(KC_BSPC)
+    KC_LCTL,    KC_LALT,    KC_LGUI,    LSFT_T(KC_SPC),  _______,                                _______,  KC_ENT,               LCTL(KC_TAB),           LGUI(KC_TAB),               LALT(KC_BSPC)
 ),
 [Mouse] = LAYOUT(
     _______,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,                              KC_F6,      KC_F7,       KC_F8,     KC_F9,      KC_F10,     _______,
@@ -100,8 +100,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [TMUX] = LAYOUT(
     _______,    _______,      _______,        _______,        _______,     _______,                             _______,     _______,          _______,           _______,          _______,              _______,
     _______,    _______,      _______,        _______,        _______,     _______,                             tmux_0,      tmux_1,           tmux_2,            tmux_3,           tmux_4,               tmux_5,
-    _______,    _______,      _______,        _______,        _______,     _______,                             _______,     tmux_create,      tmux_copy,         tmux_rename,      _______,              tmux_close_window,                  
-    _______,    _______,      _______,        _______,        _______,     _______,   KC_MPLY, KC_MUTE,         _______,     tmux_next_pane,   tmux_vertical,     tmux_horizontal,  tmux_pane_to_window,  tmux_close_pane, 
+    _______,    _______,      _______,        _______,        _______,     _______,                             _______,     tmux_create,      tmux_copy,         tmux_rename,      _______,              tmux_close_window,
+    _______,    _______,      _______,        _______,        _______,     _______,   KC_MPLY, KC_MUTE,         _______,     tmux_next_pane,   tmux_vertical,     tmux_horizontal,  tmux_pane_to_window,  tmux_close_pane,
     _______,    _______,      _______,        _______,        _______,                                    _______,    _______,      _______,          _______,            _______
 )
 };
@@ -118,9 +118,9 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif
 
 
-const uint16_t PROGMEM mouse_layer[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM arrows_layer[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM mouse_layer[] = {LSFT_T(KC_SPC), KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM arrows_layer[] = {LSFT_T(KC_SPC), KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM TMUX_layer[] = {LSFT_T(KC_SPC), KC_W, KC_E, COMBO_END};
 
 
 combo_t key_combos[] = {

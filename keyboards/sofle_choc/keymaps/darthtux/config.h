@@ -37,3 +37,7 @@
 
 // combos are only acvtive on layer 0
 #define COMBO_ONLY_FROM_LAYER 0
+
+// combo misfire tuning
+#define COMBO_MUST_HOLD_MODS
+#define COMBO_HOLD_TERM 200
