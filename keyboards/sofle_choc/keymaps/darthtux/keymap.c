@@ -118,9 +118,12 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif
 
 
-const uint16_t PROGMEM mouse_layer[] = {LSFT_T(KC_SPC), KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM arrows_layer[] = {LSFT_T(KC_SPC), KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM TMUX_layer[] = {LSFT_T(KC_SPC), KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM mouse_layer[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM arrows_layer[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
+//const uint16_t PROGMEM mouse_layer[] = {LSFT_T(KC_SPC), KC_D, KC_F, COMBO_END};
+//const uint16_t PROGMEM arrows_layer[] = {LSFT_T(KC_SPC), KC_A, KC_S, COMBO_END};
+//const uint16_t PROGMEM TMUX_layer[] = {LSFT_T(KC_SPC), KC_W, KC_E, COMBO_END};
 
 
 combo_t key_combos[] = {

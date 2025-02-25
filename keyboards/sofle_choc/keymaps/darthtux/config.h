@@ -40,4 +40,4 @@
 
 // combo misfire tuning
 #define COMBO_MUST_HOLD_MODS
-#define COMBO_HOLD_TERM 200
+#define COMBO_HOLD_TERM 100
