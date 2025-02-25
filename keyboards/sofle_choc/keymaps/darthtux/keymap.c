@@ -22,6 +22,7 @@ enum __layers {
     Base,
     Mouse,
     Arrows,
+    number,
     SYMBOLS,
     MAC_SHORTS,
     TMUX
@@ -97,6 +98,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    _______,      LGUI(KC_Z),     LGUI(KC_X),       LGUI(KC_V),        _______,   KC_MPLY, KC_MUTE,         _______,    _______,    _______,    _______,    _______,      _______,
     _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
 ),
+[number] = LAYOUT(
+  CG_TOGG,    _______,      _______,        _______,          _______,      _______,                             _______,    _______,    _______,    _______,    _______,      _______,
+  _______,    _______,      _______,        _______,          _______,      _______,                             _______,    _______,    _______,    _______,    _______,      _______,
+  _______,    KC_1,         KC_2,           KC_3,             KC_4,         KC_5,                                KC_6,       KC_7,       KC_8,       KC_9,       KC_0,         _______,
+  _______,    _______,      _______,        _______,          _______,      _______,   KC_MPLY, KC_MUTE,         _______,    _______,    _______,    _______,    _______,      _______,
+  _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
+),
 [TMUX] = LAYOUT(
     _______,    _______,      _______,        _______,        _______,     _______,                             _______,     _______,          _______,           _______,          _______,              _______,
     _______,    _______,      _______,        _______,        _______,     _______,                             tmux_0,      tmux_1,           tmux_2,            tmux_3,           tmux_4,               tmux_5,
@@ -120,6 +128,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 const uint16_t PROGMEM mouse_layer[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM arrows_layer[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM number_layer[] = {LSFT_T(KC_SPC), KC_ENT, COMBO_END};
 const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
 //const uint16_t PROGMEM mouse_layer[] = {LSFT_T(KC_SPC), KC_D, KC_F, COMBO_END};
 //const uint16_t PROGMEM arrows_layer[] = {LSFT_T(KC_SPC), KC_A, KC_S, COMBO_END};
@@ -129,6 +138,7 @@ const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
 combo_t key_combos[] = {
     COMBO(mouse_layer, MO(Mouse)),
     COMBO(arrows_layer, MO(Arrows)),
+    COMBO(number_layer, MO(number)),
     COMBO(TMUX_layer, MO(TMUX)),
 };
 
