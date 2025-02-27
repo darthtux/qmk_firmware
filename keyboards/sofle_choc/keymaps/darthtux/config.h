@@ -40,4 +40,15 @@
 
 // combo misfire tuning
 #define COMBO_MUST_HOLD_MODS
-#define COMBO_HOLD_TERM 100
+#define COMBO_TERM 20 // 20ms 
+#define COMBO_STRICT_TIMER
+
+//mouse tuning
+#define MOUSEKEY_DELAY 8
+#define MOUSEKEY_MOVE_DELTA 7
+#define MOUSEKEY_MAX_SPEED 9
+#define MOUSEKEY_TIME_TO_MAX 50
+#define MOUSEKEY_WHEEL_DELAY 8
+#define MOUSEKEY_WHEEL_DELTA 3
+#define MOUSEKEY_WHEEL_MAX_SPEED 10
+#define MOUSEKEY_INTERVAL 16 // refresh hz rating / 2 * 16

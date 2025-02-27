@@ -21,6 +21,7 @@
     Base,
     Mouse,
     Arrows,
+    number,
     SYMBOLS,
     MAC_SHORTS,
     TMUX
@@ -218,7 +219,7 @@
      switch (get_highest_layer(layer_state | default_layer_state)){    
      
          case Mouse:
-             oled_write_P(lower_layer, false);
+             oled_write_P(raise_layer, false);
              break;
          case Arrows:
              oled_write_P(raise_layer, false);
@@ -226,11 +227,14 @@
          case SYMBOLS:
              oled_write_P(adjust_layer, false);
              break;
-         case MAC_SHORTS:
+         case number:
             oled_write_P(adjust_layer, false);
             break;
+         case MAC_SHORTS:
+            oled_write_P(lower_layer, false);
+            break;
         case TMUX:
-            oled_write_P(adjust_layer, false);
+            oled_write_P(lower_layer, false);
             break;
          default:
              oled_write_P(default_layer, false);
