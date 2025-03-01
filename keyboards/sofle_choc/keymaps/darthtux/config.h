@@ -39,9 +39,9 @@
 #define COMBO_ONLY_FROM_LAYER 0
 
 // combo misfire tuning
-#define COMBO_MUST_HOLD_MODS
-#define COMBO_TERM 20 // 20ms 
-#define COMBO_STRICT_TIMER
+//#define COMBO_MUST_HOLD_MODS
+//#define COMBO_TERM 20 // 20ms 
+//#define COMBO_STRICT_TIMER
 
 //mouse tuning
 #define MOUSEKEY_DELAY 8
