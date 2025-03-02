@@ -44,6 +44,7 @@ enum custom_keycodes {
     tmux_close_window,
     tmux_copy,
     tmux_close_pane,
+    base_search,
   };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -64,11 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [Base] = LAYOUT(
-    KC_GRV,     KC_1,       KC_2,             KC_3,       KC_4,    KC_5,                                  KC_6,     KC_7,                   KC_8,                   KC_9,                       KC_0,                   KC_MINUS,
-    KC_ESC,     KC_Q,       KC_W,             KC_E,       KC_R,    KC_T,                                  KC_Y,     KC_U,                   KC_I,                   KC_O,                       KC_P,                   KC_BSPC,
-    KC_TAB,     KC_A,       LT(TMUX,KC_S),    LT(Arrows,KC_D),       LT(Mouse,KC_F),    KC_G,                                  KC_H,     LT(SYMBOLS,KC_J),       LT(MAC_SHORTS,KC_K),    KC_L,                       KC_SCLN,                KC_QUOT,
-    KC_LSFT,    KC_Z,       KC_X,             KC_C,       KC_V,    KC_B,          KC_MPLY, KC_MUTE,       KC_N,     KC_M,                   MT(MOD_LGUI, KC_COMM),  MT(MOD_LALT, KC_DOT),       MT(MOD_LCTL, KC_SLSH),  KC_RSFT,
-    KC_LCTL,    KC_LALT,    KC_LGUI,          KC_SPC,  KC_LEFT_SHIFT,                                _______,  KC_ENT,               LCTL(KC_TAB),           LGUI(KC_TAB),               LALT(KC_BSPC)
+    KC_GRV,     KC_1,                     KC_2,             KC_3,                 KC_4,               KC_5,                                  KC_6,          KC_7,                   KC_8,                   KC_9,                       KC_0,                   KC_MINUS,
+    KC_ESC,     KC_Q,                     KC_W,             KC_E,                 KC_R,               KC_T,                                  KC_Y,          KC_U,                   KC_I,                   KC_O,                       KC_P,                   KC_BSPC,
+    KC_TAB,     KC_A,                     LT(TMUX,KC_S),    LT(Arrows,KC_D),      LT(Mouse,KC_F),     KC_G,                                  KC_H,          LT(SYMBOLS,KC_J),       LT(MAC_SHORTS,KC_K),    KC_L,                       KC_SCLN,                KC_QUOT,
+    KC_LSFT,    MT(MOD_LSFT,KC_Z),        KC_X,             KC_C,                 KC_V,               KC_B,        KC_MPLY, KC_MUTE,         KC_N,          MT(MOD_LGUI,KC_M),      MT(MOD_LCTL,KC_COMM),   MT(MOD_LALT, KC_DOT),       MT(MOD_LSFT, KC_SLSH),  base_search,
+                                          KC_LCTL,          KC_LALT,              KC_LGUI,      KC_SPC,  KC_LEFT_SHIFT,               KC_DELETE,  KC_ENT,     LCTL(KC_TAB),           LGUI(KC_TAB),           LALT(KC_BSPC)
 ),
 [Mouse] = LAYOUT(
     _______,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,                              KC_F6,      KC_F7,       KC_F8,     KC_F9,      KC_F10,     _______,
@@ -86,10 +87,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [SYMBOLS] = LAYOUT(
     CG_TOGG,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,                                  KC_F6,          KC_F7,      KC_F8,      KC_F9,      KC_F10,       _______,
-    _______,    KC_LBRC,    KC_RBRC,    KC_EQUAL,   KC_DQUO,    _______,                                _______,        _______,    _______,    _______,    _______,      _______,
-    _______,    KC_LCBR,    KC_RCBR,    KC_BSLS,    KC_PIPE,    LSFT(KC_MINUS),                                _______,        _______,    _______,    _______,    _______,      _______,
-    _______,    KC_LABK,    KC_RABK,    KC_PLUS,    KC_MINUS,    _______,    KC_MPLY, KC_MUTE,           _______,        _______,    _______,    _______,    _______,      _______,
-    _______,    _______,    _______,    _______,    _______,                                            _______,        _______,    _______,    _______,    _______
+    _______,    KC_LBRC,    KC_RBRC,    KC_EQUAL,   KC_DQUO,    KC_GRV,                                 _______,        _______,    _______,    _______,    _______,      _______,
+    _______,    KC_LCBR,    KC_RCBR,    KC_BSLS,    KC_PIPE,    LSFT(KC_MINUS),                         _______,        _______,    _______,    _______,    _______,      _______,
+    _______,    KC_LABK,    KC_RABK,    KC_PLUS,    KC_MINUS,   LSFT(KC_GRV),    KC_MPLY, KC_MUTE,      _______,        _______,    _______,    _______,    _______,      _______,
+                            _______,    _______,    _______,    _______,    _______,              _______,  _______,    _______,    _______,    _______
 ),
 [number] = LAYOUT(
   CG_TOGG,    _______,      _______,        _______,          _______,      _______,                             _______,    _______,    _______,    _______,    _______,      _______,
@@ -102,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CG_TOGG,    _______,      _______,        _______,          _______,           _______,                             _______,    _______,    _______,    _______,    _______,      _______,
     _______,    LCTL(KC_C),   SGUI(KC_BSPC),  LSFT(KC_UP),      LGUI(KC_C),        _______,                             _______,    _______,    _______,    _______,    _______,      _______,
     _______,    LCTL(KC_R),   LGUI(KC_LEFT),  LSFT(KC_DOWN),    LGUI(KC_RGHT),     _______,                             _______,    _______,    _______,    _______,    _______,      _______,
-    _______,    _______,      LGUI(KC_Z),     LGUI(KC_X),       LGUI(KC_V),        _______,   KC_MPLY, KC_MUTE,         _______,    _______,    _______,    _______,    _______,      _______,
+    _______,    LGUI(KC_M),   LGUI(KC_Z),     LGUI(KC_X),       LGUI(KC_V),        _______,   KC_MPLY, KC_MUTE,         _______,    _______,    _______,    _______,    _______,      _______,
     _______,    _______,      _______,        _______,        _______,                                                _______,    _______,    _______,    _______,    _______
 ),
 [TMUX] = LAYOUT(
@@ -126,24 +127,35 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif
 
 
-/*const uint16_t PROGMEM mouse_layer[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM arrows_layer[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM number_layer[] = {LSFT_T(KC_SPC), KC_ENT, COMBO_END};
-const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
+//const uint16_t PROGMEM mouse_layer[] = {KC_D, KC_F, COMBO_END};
+//const uint16_t PROGMEM arrows_layer[] = {KC_A, KC_S, COMBO_END};
+//const uint16_t PROGMEM number_layer[] = {LSFT_T(KC_SPC), KC_ENT, COMBO_END};
+const uint16_t PROGMEM number_layer[] = {KC_SPC, KC_ENT, COMBO_END};
+//const uint16_t PROGMEM TMUX_layer[] = {KC_W, KC_E, COMBO_END};
 //const uint16_t PROGMEM mouse_layer[] = {LSFT_T(KC_SPC), KC_D, KC_F, COMBO_END};
 //const uint16_t PROGMEM arrows_layer[] = {LSFT_T(KC_SPC), KC_A, KC_S, COMBO_END};
 //const uint16_t PROGMEM TMUX_layer[] = {LSFT_T(KC_SPC), KC_W, KC_E, COMBO_END};
 
 
 combo_t key_combos[] = {
-    COMBO(mouse_layer, MO(Mouse)),
-    COMBO(arrows_layer, MO(Arrows)),
+    //COMBO(mouse_layer, MO(Mouse)),
+    //COMBO(arrows_layer, MO(Arrows)),
     COMBO(number_layer, MO(number)),
-    COMBO(TMUX_layer, MO(TMUX)),
+    //COMBO(TMUX_layer, MO(TMUX)),
 };
-*/
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // These macros are speicif to the TMUX layer.  Ignore them if not on that layer.
+    if(IS_LAYER_ON(Base)){
+      switch(keycode){
+        case base_search:
+          if (record->event.pressed) {
+            SEND_STRING(SS_LGUI(" ") SS_DELAY(20));
+          }
+        return true;
+      }
+    }
+    
     if(IS_LAYER_ON(TMUX)){
     
       switch (keycode) {
