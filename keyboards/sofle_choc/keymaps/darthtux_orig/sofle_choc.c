@@ -20,7 +20,10 @@
  enum layers {
     Base,
     Mouse,
+    Arrows,
+    number,
     SYMBOLS,
+    MAC_SHORTS,
     TMUX
  };
  
@@ -218,11 +221,20 @@
          case Mouse:
              oled_write_P(raise_layer, false);
              break;
-         case SYMBOLS:
-             oled_write_P(lower_layer, false);
+         case Arrows:
+             oled_write_P(raise_layer, false);
              break;
-        case TMUX:
+         case SYMBOLS:
+             oled_write_P(adjust_layer, false);
+             break;
+         case number:
             oled_write_P(adjust_layer, false);
+            break;
+         case MAC_SHORTS:
+            oled_write_P(lower_layer, false);
+            break;
+        case TMUX:
+            oled_write_P(lower_layer, false);
             break;
          default:
              oled_write_P(default_layer, false);
